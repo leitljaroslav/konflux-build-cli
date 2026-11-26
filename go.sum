@@ -221,6 +221,8 @@ github.com/bitnami/go-version v0.0.0-20250131085805-b1f57a8634ef h1:TSFnfbbu2oAO
 github.com/bitnami/go-version v0.0.0-20250131085805-b1f57a8634ef/go.mod h1:9iglf1GG4oNRJ39bZ5AZrjgAFD2RwQbXw6Qf7Cs47wo=
 github.com/blakesmith/ar v0.0.0-20190502131153-809d4375e1fb h1:m935MPodAbYS46DG4pJSv7WO+VECIWUQ7OJYSoTrMh4=
 github.com/blakesmith/ar v0.0.0-20190502131153-809d4375e1fb/go.mod h1:PkYb9DJNAwrSvRx5DYA+gUcOIgTGVMNkfSCbZM8cWpI=
+github.com/blang/semver/v4 v4.0.0 h1:1PFHFE6yCCTv8C1TeyNNarDzntLi7wMI5i/pzqYIsAM=
+github.com/blang/semver/v4 v4.0.0/go.mod h1:IbckMUScFkM3pff0VJDNKRiT6TG/YpiHIM2yvyW5YoQ=
 github.com/bmatcuk/doublestar/v4 v4.10.0 h1:zU9WiOla1YA122oLM6i4EXvGW62DvKZVxIe6TYWexEs=
 github.com/bmatcuk/doublestar/v4 v4.10.0/go.mod h1:xBQ8jztBU6kakFMg+8WGxn0c6z1fTSPVIjEY1Wr7jzc=
 github.com/bodgit/plumbing v1.3.0 h1:pf9Itz1JOQgn7vEOE7v7nlEfBykYqvUYioC61TwWCFU=
@@ -1646,6 +1648,8 @@ rsc.io/quote/v3 v3.1.0/go.mod h1:yEA65RcK8LyAZtP9Kv3t0HmxON59tX3rD+tICJqUlj0=
 rsc.io/sampler v1.3.0/go.mod h1:T1hPZKmBbMNahiBKFy5HrXp6adAjACjK9JXDnKaTXpA=
 sigs.k8s.io/json v0.0.0-20250730193827-2d320260d730 h1:IpInykpT6ceI+QxKBbEflcR5EXP7sU1kvOlxwZh5txg=
 sigs.k8s.io/json v0.0.0-20250730193827-2d320260d730/go.mod h1:mdzfpAEoE6DHQEN0uh9ZbOCuHbLK5wOm7dK4ctXE9Tg=
+sigs.k8s.io/kustomize/api v0.21.2 h1:MRyw+zLnFBP+G40gZJoKZErAuRiOPEPao+ddS9L6xt4=
+sigs.k8s.io/kustomize/api v0.21.2/go.mod h1:inubcVvQjJR/BjUti22YVBWr4EX+XlurEWhB81v2JV4=
 sigs.k8s.io/kustomize/kyaml v0.21.2 h1:1javwStFk7cgOeLU7yJtPmXcgMEhQgC2X0WjFT6U0p0=
 sigs.k8s.io/kustomize/kyaml v0.21.2/go.mod h1:zX3qwtuouXd2K1fMiCV0VSFReX06a+CY1rhyf5Dy7hQ=
 sigs.k8s.io/randfill v1.0.0 h1:JfjMILfT8A6RbawdsK2JXGBR5AQVfd+9TbzrlneTyrU=
