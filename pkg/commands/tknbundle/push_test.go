@@ -64,6 +64,130 @@ func TestTektonBundlePushValidation(t *testing.T) {
 				Source: sourceDir,
 			},
 		},
+		{
+			name: "replacement disabled",
+			params: TektonBundlePushParams{
+				Image:  "quay.io/mock/bundle:v1",
+				Source: sourceDir,
+			},
+		},
+		{
+			name: "empty selector selects all steps",
+			params: TektonBundlePushParams{
+				Image:      "quay.io/mock/bundle:v1",
+				Source:     sourceDir,
+				StepsImage: "quay.io/mock/tools:v1",
+			},
+		},
+		{
+			name: "one included step",
+			params: TektonBundlePushParams{
+				Image:               "quay.io/mock/bundle:v1",
+				Source:              sourceDir,
+				StepsImage:          "quay.io/mock/tools:v1",
+				StepsImageStepNames: "build",
+			},
+		},
+		{
+			name: "comma separated includes",
+			params: TektonBundlePushParams{
+				Image:               "quay.io/mock/bundle:v1",
+				Source:              sourceDir,
+				StepsImage:          "quay.io/mock/tools:v1",
+				StepsImageStepNames: "build,test",
+			},
+		},
+		{
+			name: "space separated includes",
+			params: TektonBundlePushParams{
+				Image:               "quay.io/mock/bundle:v1",
+				Source:              sourceDir,
+				StepsImage:          "quay.io/mock/tools:v1",
+				StepsImageStepNames: "build test",
+			},
+		},
+		{
+			name: "mixed separators",
+			params: TektonBundlePushParams{
+				Image:               "quay.io/mock/bundle:v1",
+				Source:              sourceDir,
+				StepsImage:          "quay.io/mock/tools:v1",
+				StepsImageStepNames: " build,\t test ",
+			},
+		},
+		{
+			name: "one excluded step",
+			params: TektonBundlePushParams{
+				Image:               "quay.io/mock/bundle:v1",
+				Source:              sourceDir,
+				StepsImage:          "quay.io/mock/tools:v1",
+				StepsImageStepNames: "!publish",
+			},
+		},
+		{
+			name: "comma separated excludes",
+			params: TektonBundlePushParams{
+				Image:               "quay.io/mock/bundle:v1",
+				Source:              sourceDir,
+				StepsImage:          "quay.io/mock/tools:v1",
+				StepsImageStepNames: "!test,!publish",
+			},
+		},
+		{
+			name: "space separated excludes",
+			params: TektonBundlePushParams{
+				Image:               "quay.io/mock/bundle:v1",
+				Source:              sourceDir,
+				StepsImage:          "quay.io/mock/tools:v1",
+				StepsImageStepNames: "!test !publish",
+			},
+		},
+		{
+			name: "include then exclude",
+			params: TektonBundlePushParams{
+				Image:               "quay.io/mock/bundle:v1",
+				Source:              sourceDir,
+				StepsImage:          "quay.io/mock/tools:v1",
+				StepsImageStepNames: "build,!test",
+			},
+			expectError: true,
+		},
+		{
+			name: "exclude then include",
+			params: TektonBundlePushParams{
+				Image:               "quay.io/mock/bundle:v1",
+				Source:              sourceDir,
+				StepsImage:          "quay.io/mock/tools:v1",
+				StepsImageStepNames: "!test build",
+			},
+			expectError: true,
+		},
+		{
+			name: "bare exclusion",
+			params: TektonBundlePushParams{
+				Image:               "quay.io/mock/bundle:v1",
+				Source:              sourceDir,
+				StepsImage:          "quay.io/mock/tools:v1",
+				StepsImageStepNames: "!",
+			},
+		},
+		{
+			name: "bare exclusion among names",
+			params: TektonBundlePushParams{
+				Image:               "quay.io/mock/bundle:v1",
+				Source:              sourceDir,
+				StepsImage:          "quay.io/mock/tools:v1",
+				StepsImageStepNames: "!test,!",
+			},
+		},
+		{
+			name: "selector without replacement image is ignored",
+			params: TektonBundlePushParams{
+				Image:               "quay.io/mock/bundle:v1",
+				Source:              sourceDir,
+				StepsImageStepNames: "build",
+			},
+		},
 	}
 
 	for _, tt := range tests {

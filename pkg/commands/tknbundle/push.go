@@ -63,5 +63,9 @@ func (c *TektonBundlePush) validateParams() error {
 		return fmt.Errorf("source path %q is not a directory", info.Name())
 	}
 
+	if _, err := newStepImageOverride(c.Params.StepsImage, c.Params.StepsImageStepNames); err != nil {
+		return err
+	}
+
 	return nil
 }
