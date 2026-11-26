@@ -1,0 +1,11 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: kustomized
+  labels:
+    app.kubernetes.io/version: "2.0"
+spec:
+  description: Rendered description
+  steps:
+    - name: build
+      image: alpine

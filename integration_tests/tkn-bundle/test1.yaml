@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  labels:
+    app.kubernetes.io/version: "0.1"
+  name: test1
+spec:
+  description: Build the application
+  steps:
+    - name: build
+      image: ubuntu
+    - name: test
+      image: alpine
