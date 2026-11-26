@@ -11,7 +11,8 @@ import (
 )
 
 type TektonBundlePushCliWrappers struct {
-	TknCli cliwrappers.TknCliInterface
+	TknCli  cliwrappers.TknCliInterface
+	OrasCli cliwrappers.OrasCliInterface
 }
 
 type TektonBundlePush struct {

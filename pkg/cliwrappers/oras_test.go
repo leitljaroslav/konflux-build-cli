@@ -70,6 +70,29 @@ func TestOrasCli_Push(t *testing.T) {
 		g.Expect(stderr).Should(Equal("push progress"))
 	})
 
+	t.Run("push from a working directory", func(t *testing.T) {
+		orasCli, executor := setupOrasCli()
+
+		executor.executeFunc = func(cmd cliwrappers.Cmd) (string, string, int, error) {
+			g.Expect(cmd.Name).Should(Equal("oras"))
+			g.Expect(cmd.Args).Should(Equal([]string{"push", artifactImage, fileName}))
+			g.Expect(cmd.Dir).Should(Equal("/path/to/migrations"))
+			return imageDigest, "push progress", 0, nil
+		}
+
+		pushArgs := &cliwrappers.OrasPushArgs{
+			DestinationImage: artifactImage,
+			FileName:         fileName,
+			Workdir:          "/path/to/migrations",
+		}
+
+		stdout, stderr, err := orasCli.Push(pushArgs)
+
+		g.Expect(err).ShouldNot(HaveOccurred())
+		g.Expect(stdout).Should(Equal(imageDigest))
+		g.Expect(stderr).Should(Equal("push progress"))
+	})
+
 	t.Run("push with specific artifact type", func(t *testing.T) {
 		orasCli, executor := setupOrasCli()
 

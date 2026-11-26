@@ -35,7 +35,9 @@ func NewOrasCli(executor CliExecutorInterface) (*OrasCli, error) {
 type OrasPushArgs struct {
 	DestinationImage string
 	FileName         string
+	Workdir          string
 	ArtifactType     string
+	Annotations      []string
 	RegistryConfig   string
 	Format           string
 	Template         string
@@ -63,11 +65,14 @@ func (b *OrasCli) Push(args *OrasPushArgs) (string, string, error) {
 	if args.Template != "" {
 		orasArgs = append(orasArgs, "--template", args.Template)
 	}
+	for _, annotation := range args.Annotations {
+		orasArgs = append(orasArgs, "--annotation", annotation)
+	}
 	orasArgs = append(orasArgs, args.DestinationImage, args.FileName)
 
 	orasLog.Debugf("Running command:\n%s", shellJoin("oras", orasArgs...))
 
-	stdout, stderr, _, err := b.Executor.Execute(Cmd{Name: "oras", Args: orasArgs, LogOutput: true})
+	stdout, stderr, _, err := b.Executor.Execute(Cmd{Name: "oras", Args: orasArgs, Dir: args.Workdir, LogOutput: true})
 
 	if err != nil {
 		orasLog.Errorf("oras push failed: %s", err.Error())
