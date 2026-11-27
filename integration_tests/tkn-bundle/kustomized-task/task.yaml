@@ -1,0 +1,11 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: kustomized
+  labels:
+    app.kubernetes.io/version: "0.1"
+spec:
+  description: Original description
+  steps:
+    - name: build
+      image: ubuntu
